@@ -1,0 +1,18 @@
+if (global.pause == 1)
+{
+    var buff = buffer_load("gameplay_surface.buf")
+    var surf = surface_create(surface_get_width(application_surface), surface_get_height(application_surface))
+    buffer_set_surface(buff, surf, 0)
+    draw_surface(surf, 0, 0)
+    buffer_delete(buff)
+    surface_free(surf)
+    draw_set_color(c_black)
+    draw_set_alpha(0.35)
+    draw_rectangle(0, 0, surface_get_width(application_surface), surface_get_height(application_surface), false)
+    draw_set_alpha(1)
+}
+draw_set_color(c_white)
+draw_set_font(fnt_nerd)
+draw_text(0, 280, ("PARRIES: " + string(obj_catgame.parries)))
+draw_text(200, 280, ("HITPOINTS: " + string(obj_catgame._lives)))
+draw_sprite_ext(spr_flash, 0, obj_catgame.x, obj_catgame.y, 1, 1, image_angle, image_blend, obj_catgame.flash)
